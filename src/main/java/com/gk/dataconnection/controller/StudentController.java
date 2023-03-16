@@ -34,4 +34,16 @@ public class StudentController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+
+    @PutMapping("/update/student/{id}")
+    public ResponseEntity<Student> updateStudent(@PathVariable int id, @RequestBody Student stud){
+        Optional<Student> student = studentrepo.findById(id);
+        if(student.isPresent()){
+            student.get().setName(stud.getName());
+            return new ResponseEntity<>(studentrepo.save(student.get()),HttpStatus.OK);
+        }
+        else{
+                return  new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
 }
