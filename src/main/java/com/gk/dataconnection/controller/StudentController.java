@@ -46,4 +46,17 @@ public class StudentController {
                 return  new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+
+    @DeleteMapping("/delete/student/{id}")
+    public ResponseEntity<Void> deleteStudent(@PathVariable int id){
+        Optional<Student> student = studentrepo.findById(id);
+        if(student.isPresent()){
+            studentrepo.deleteById(id);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        else{
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
 }
