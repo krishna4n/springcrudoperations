@@ -39,7 +39,7 @@ public class StudentController {
     public ResponseEntity<Student> updateStudent(@PathVariable int id, @RequestBody Student stud){
         Optional<Student> student = studentrepo.findById(id);
         if(student.isPresent()){
-            student.get().setName(stud.getName());
+            student.get().setStudentName(stud.getStudentName());
             return new ResponseEntity<>(studentrepo.save(student.get()),HttpStatus.OK);
         }
         else{

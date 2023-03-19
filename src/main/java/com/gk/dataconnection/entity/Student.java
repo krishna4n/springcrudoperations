@@ -10,15 +10,20 @@ public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     int id;
-    String name;
+    String studentName;
+    String fatherName;
+    String motherName;
+    int mobileNumber;
 
-    public Student() {
-        super();
+    public Student(int id, String studentName, String fatherName, String motherName, int mobileNumber) {
+        this.id = id;
+        this.studentName = studentName;
+        this.fatherName = fatherName;
+        this.motherName = motherName;
+        this.mobileNumber = mobileNumber;
     }
 
-    public Student(int id, String name) {
-        this.id = id;
-        this.name = name;
+    public Student() {
     }
 
     public int getId() {
@@ -29,11 +34,35 @@ public class Student {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getStudentName() {
+        return studentName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setStudentName(String studentName) {
+        this.studentName = studentName;
+    }
+
+    public String getFatherName() {
+        return fatherName;
+    }
+
+    public void setFatherName(String fatherName) {
+        this.fatherName = fatherName;
+    }
+
+    public String getMotherName() {
+        return motherName;
+    }
+
+    public void setMotherName(String motherName) {
+        this.motherName = motherName;
+    }
+
+    public int getMobileNumber() {
+        return mobileNumber;
+    }
+
+    public void setMobileNumber(int mobileNumber) {
+        this.mobileNumber = mobileNumber;
     }
 }
