@@ -9,29 +9,29 @@ import jakarta.persistence.Id;
 public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    int id;
+    int studentId;
     String studentName;
     String fatherName;
     String motherName;
     int mobileNumber;
 
-    public Student(int id, String studentName, String fatherName, String motherName, int mobileNumber) {
-        this.id = id;
+    public Student() {
+    }
+
+    public Student(int studentId, String studentName, String fatherName, String motherName, int mobileNumber) {
+        this.studentId = studentId;
         this.studentName = studentName;
         this.fatherName = fatherName;
         this.motherName = motherName;
         this.mobileNumber = mobileNumber;
     }
 
-    public Student() {
+    public int getStudentId() {
+        return studentId;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+    public void setStudentId(int studentId) {
+        this.studentId = studentId;
     }
 
     public String getStudentName() {
