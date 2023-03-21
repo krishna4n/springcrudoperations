@@ -1,17 +1,19 @@
 package com.gk.dataconnection.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.Set;
 
 @Entity
 public class Subjects {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+            @Column(name = "subject_id")
     int subjectId;
     String subjectName;
 
+    @ManyToMany(mappedBy = "subjectsSet", fetch = FetchType.LAZY)
+    Set<Courses> coursesSet;
     public Subjects(int subjectId, String subjectName) {
         this.subjectId = subjectId;
         this.subjectName = subjectName;

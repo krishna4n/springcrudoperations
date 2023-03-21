@@ -1,19 +1,30 @@
 package com.gk.dataconnection.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.Set;
 
 @Entity
 public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+            @Column(name = "student_id")
     int studentId;
     String studentName;
     String fatherName;
     String motherName;
     int mobileNumber;
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "student_course",
+            joinColumns = {
+                    @JoinColumn(name = "student_id", referencedColumnName = "student_id")
+            },
+            inverseJoinColumns = {
+                    @JoinColumn(name = "course_id", referencedColumnName = "course_id")
+            }
+    )
+    Set<Courses> coursesSet;
 
     public Student() {
     }

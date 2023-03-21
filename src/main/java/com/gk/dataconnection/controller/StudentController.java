@@ -18,10 +18,6 @@ public class StudentController {
     CoursesRespository coursesRespository;
     @Autowired
     SubjectsRepository subjectsRepository;
-    @Autowired
-    CoureSubjectRepository coureSubjectRepository;
-    @Autowired
-    StudentCourseRepository studentCourseRepository;
 
     @PostMapping("/post/student")
     public ResponseEntity<Student> saveStudent(@RequestBody  Student student){
