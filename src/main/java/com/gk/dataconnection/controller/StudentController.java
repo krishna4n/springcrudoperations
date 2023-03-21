@@ -1,7 +1,7 @@
 package com.gk.dataconnection.controller;
 
 import com.gk.dataconnection.entity.Student;
-import com.gk.dataconnection.repositary.StudentRepositary;
+import com.gk.dataconnection.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +13,16 @@ import java.util.Optional;
 @RestController
 public class StudentController {
     @Autowired
-    StudentRepositary studentrepo;
+    StudentRepository studentrepo;
+    @Autowired
+    CoursesRespository coursesRespository;
+    @Autowired
+    SubjectsRepository subjectsRepository;
+    @Autowired
+    CoureSubjectRepository coureSubjectRepository;
+    @Autowired
+    StudentCourseRepository studentCourseRepository;
+
     @PostMapping("/post/student")
     public ResponseEntity<Student> saveStudent(@RequestBody  Student student){
        return new ResponseEntity<>(studentrepo.save(student), HttpStatus.CREATED);
