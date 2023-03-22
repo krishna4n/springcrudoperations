@@ -2,6 +2,7 @@ package com.gk.dataconnection.entity;
 
 import jakarta.persistence.*;
 
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -14,17 +15,9 @@ public class Student {
     String fatherName;
     String motherName;
     int mobileNumber;
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "student_course",
-            joinColumns = {
-                    @JoinColumn(name = "student_id", referencedColumnName = "student_id")
-            },
-            inverseJoinColumns = {
-                    @JoinColumn(name = "course_id", referencedColumnName = "course_id")
-            }
-    )
-    Set<Courses> coursesSet;
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "student_id", referencedColumnName = "student_id")
+    List<Courses> coursesList;
 
     public Student() {
     }

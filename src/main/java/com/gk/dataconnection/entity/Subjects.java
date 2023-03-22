@@ -2,6 +2,7 @@ package com.gk.dataconnection.entity;
 
 import jakarta.persistence.*;
 
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -12,8 +13,7 @@ public class Subjects {
     int subjectId;
     String subjectName;
 
-    @ManyToMany(mappedBy = "subjectsSet", fetch = FetchType.LAZY)
-    Set<Courses> coursesSet;
+
     public Subjects(int subjectId, String subjectName) {
         this.subjectId = subjectId;
         this.subjectName = subjectName;

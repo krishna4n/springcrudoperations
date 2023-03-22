@@ -2,6 +2,7 @@ package com.gk.dataconnection.entity;
 
 import jakarta.persistence.*;
 
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -11,19 +12,11 @@ public class Courses {
             @Column(name = "course_id")
     int courseId;
     String courseName;
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinTable(name = "course_subject" ,
-    joinColumns = {
+
+    @OneToMany(cascade = CascadeType.ALL)
             @JoinColumn(name="course_id", referencedColumnName = "course_id")
-    },
-    inverseJoinColumns = {
-            @JoinColumn(name = "subject_id", referencedColumnName = "subject_id")
+    List<Subjects> subjectsList ;
 
-    })
-    Set<Subjects> subjectsSet;
-
-    @ManyToMany(mappedBy = "coursesSet", cascade = CascadeType.ALL)
-    Set<Student> studentSet;
 
     public Courses(int courseId, String courseName) {
         this.courseId = courseId;
