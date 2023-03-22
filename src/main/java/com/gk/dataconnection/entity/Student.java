@@ -15,9 +15,9 @@ public class Student {
     String fatherName;
     String motherName;
     int mobileNumber;
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "student_id", referencedColumnName = "student_id")
-    List<Courses> coursesList;
+    List<Courses> courses;
 
     public Student() {
     }

@@ -21,13 +21,9 @@ public class StudentController {
     SubjectsRepository subjectsRepository;
 
     @PostMapping("/post/student")
-    public ResponseEntity<Student> saveStudent(@RequestBody  Student student){
-       return new ResponseEntity<>(studentrepo.save(student), HttpStatus.CREATED);
-    }
-
-    @PostMapping("/courses")
-    public ResponseEntity<Courses> saveCourses(@RequestBody Courses courses){
-        return new ResponseEntity<>(coursesRespository.save(courses), HttpStatus.CREATED);
+    public ResponseEntity<String> saveStudent(@RequestBody  List<Student> studentList){
+       studentrepo.saveAll(studentList);
+       return ResponseEntity.ok("Saved");
     }
 
     @GetMapping("/students")
