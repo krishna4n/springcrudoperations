@@ -19,6 +19,9 @@ public class Subjects {
         this.subjectName = subjectName;
     }
 
+    public Subjects() {
+    }
+
     public Subjects(int subjectId) {
         this.subjectId = subjectId;
     }

@@ -1,9 +1,8 @@
 package com.gk.dataconnection.entity;
 
 import jakarta.persistence.*;
-
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 public class Student {
@@ -11,13 +10,23 @@ public class Student {
     @GeneratedValue(strategy = GenerationType.AUTO)
             @Column(name = "student_id")
     int studentId;
+    @Column(name = "student_name")
     String studentName;
     String fatherName;
     String motherName;
     int mobileNumber;
+
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "student_id", referencedColumnName = "student_id")
-    List<Courses> courses;
+            @JoinColumn(name="student_id", referencedColumnName = "student_id")
+    List<Courses> courses ;
+
+    public List<Courses> getCourses() {
+        return courses;
+    }
+
+    public void setCourses(List<Courses> courses) {
+        this.courses = courses;
+    }
 
     public Student() {
     }

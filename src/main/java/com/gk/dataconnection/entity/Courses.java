@@ -1,6 +1,7 @@
 package com.gk.dataconnection.entity;
 
 import jakarta.persistence.*;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 import java.util.Set;
@@ -13,9 +14,6 @@ public class Courses {
     int courseId;
     String courseName;
 
-    @OneToMany(cascade = CascadeType.ALL)
-            @JoinColumn(name="course_id", referencedColumnName = "course_id")
-    List<Subjects> subjectsList ;
 
 
     public Courses(int courseId, String courseName) {

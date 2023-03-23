@@ -1,5 +1,5 @@
 package com.gk.dataconnection.controller;
-
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.gk.dataconnection.entity.Courses;
 import com.gk.dataconnection.entity.Student;
 import com.gk.dataconnection.repository.*;
@@ -14,26 +14,27 @@ import java.util.Optional;
 @RestController
 public class StudentController {
     @Autowired
-    StudentRepository studentrepo;
+    StudentRepository studentRepository;
     @Autowired
     CoursesRespository coursesRespository;
     @Autowired
     SubjectsRepository subjectsRepository;
 
-    @PostMapping("/post/student")
-    public ResponseEntity<String> saveStudent(@RequestBody  List<Student> studentList){
-       studentrepo.saveAll(studentList);
+    @PostMapping("/save/student")
+    public ResponseEntity<String> saveStudent(@RequestBody  Student student){
+
+        studentRepository.save(student);
        return ResponseEntity.ok("Saved");
     }
 
     @GetMapping("/students")
     public ResponseEntity<List<Student>> getStudents(){
-        return new ResponseEntity<>(studentrepo.findAll(), HttpStatus.OK);
+        return new ResponseEntity<>(studentRepository.findAll(), HttpStatus.OK);
     }
 
     @GetMapping("/student/{id}")
     public ResponseEntity<Student> getStudent(@PathVariable int id){
-        Optional<Student> student = studentrepo.findById(id);
+        Optional<Student> student = studentRepository.findById(id);
         if(student.isPresent()){
             return new ResponseEntity<>(student.get(), HttpStatus.OK);
         }
@@ -44,10 +45,10 @@ public class StudentController {
 
     @PutMapping("/update/student/{id}")
     public ResponseEntity<Student> updateStudent(@PathVariable int id, @RequestBody Student stud){
-        Optional<Student> student = studentrepo.findById(id);
+        Optional<Student> student = studentRepository.findById(id);
         if(student.isPresent()){
             student.get().setStudentName(stud.getStudentName());
-            return new ResponseEntity<>(studentrepo.save(student.get()),HttpStatus.OK);
+            return new ResponseEntity<>(studentRepository.save(student.get()),HttpStatus.OK);
         }
         else{
                 return  new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -56,9 +57,9 @@ public class StudentController {
 
     @DeleteMapping("/delete/student/{id}")
     public ResponseEntity<Void> deleteStudent(@PathVariable int id){
-        Optional<Student> student = studentrepo.findById(id);
+        Optional<Student> student = studentRepository.findById(id);
         if(student.isPresent()){
-            studentrepo.deleteById(id);
+            studentRepository.deleteById(id);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         else{
