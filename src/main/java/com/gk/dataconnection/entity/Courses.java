@@ -14,7 +14,17 @@ public class Courses {
     int courseId;
     String courseName;
 
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "course_id", referencedColumnName = "course_id")
+    List<Subjects> subjects;
 
+    public List<Subjects> getSubjects() {
+        return subjects;
+    }
+
+    public void setSubjects(List<Subjects> subjects) {
+        this.subjects = subjects;
+    }
 
     public Courses(int courseId, String courseName) {
         this.courseId = courseId;

@@ -17,7 +17,7 @@ public class Student {
     int mobileNumber;
 
     @OneToMany(cascade = CascadeType.ALL)
-            @JoinColumn(name="student_id", referencedColumnName = "student_id")
+    @JoinColumn(name="student_id", referencedColumnName = "student_id")
     List<Courses> courses ;
 
     public List<Courses> getCourses() {

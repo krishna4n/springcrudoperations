@@ -1,5 +1,6 @@
 package com.gk.dataconnection.service;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.gk.dataconnection.entity.Student;
 import com.gk.dataconnection.repository.CoursesRespository;
 import com.gk.dataconnection.repository.StudentRepository;
@@ -19,7 +20,9 @@ public class StudentService {
     @Autowired
     CoursesRespository coursesRespository;
 
+    @JsonIgnore
     public Student saveStudent(Student student) {
+        System.out.println(student.getCourses());
         return studentRepository.save(student);
 
     }
