@@ -17,12 +17,12 @@ public class StudentController {
     @Autowired
     private StudentService studentService;
 
-    @PostMapping("/student/add")
+    @PostMapping("/students")
     public Student saveStudent(@RequestBody Student student){
         ;
         return studentService.saveStudent(student);
     }
-    @DeleteMapping("/student/delete/{student_id}")
+    @DeleteMapping("/students/{student_id}")
     public String deleteStudent(@PathVariable int student_id){
 
         return studentService.deleteStudent(student_id);
@@ -31,12 +31,12 @@ public class StudentController {
     public List<Student> getStudents(){
         return studentService.getStudents();
     }
-    @GetMapping("/student/{id}")
+    @GetMapping("/students/{id}")
     public ResponseEntity<Student> getStudent(@PathVariable int id){
         return studentService.getStudent(id);
     }
 
-    @PutMapping("/student/update/{id}")
+    @PutMapping("/student/{id}")
     public String updateStudent(@PathVariable int id, @RequestBody Student student){
         return studentService.updateStudent(id, student);
     }
